@@ -1,0 +1,44 @@
+{% extends 'movies/base.html' %}
+
+{% block movie_content %}
+<h5>Movie List</h5>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+    <thead>
+        <tr>
+            <th class="mdl-data-table__cell--non-numeric"></th>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Rating</th>
+            <th>Release Date</th>
+            <td>Average Rating</td>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mov in object_list %}
+        <tr>
+            <td class="mdl-data-table__cell--non-numeric"></td>
+            <td>{{mov.name}}</td>
+            <td>{{mov.genre}}</td>
+            <td>{{mov.rating}}</td>
+            <td>{{mov.release_date}}</td>
+            <td>{{mov.average_rating|floatformat:2}}</td>
+            <td>
+                <button class="mdl-button mdl-js-button mdl-button--accent">
+                    <a href="{% url 'movies:movie-details' mov.id %}">View</a>
+                </button>
+                <button class="mdl-button mdl-js-button mdl-button--primary">
+                    <a href="{% url 'movies:movie-update' mov.id %}">Edit</a>
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+      
+    </tbody>
+    
+</table>
+<br />
+    <a class="mdl-button mdl-js-button mdl-button--fab mdl-button--accent" href="{% url 'movies:movie-create' %}">
+        <i class="material-icons">add</i>
+    </a>
+{% endblock %}

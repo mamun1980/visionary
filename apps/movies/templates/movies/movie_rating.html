@@ -1,0 +1,15 @@
+{% extends 'movies/base.html' %}
+
+{% block movie_content %}
+    <h5>Give A Rating to the movie: {{object}} </h5>
+    <div class="card p-5">
+        <form method="post" action="{% url 'movies:movie-update' object.id %}">{% csrf_token %}
+            <input type="number" step="0.1" name="rating" value="0" max="5" min="0.0">
+            <input type="hidden" name="movie_id" value="{{object.id}}">
+            <input type="hidden" name="user_id" value="{{ request.user.id }}">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                Submit
+              </button>
+        </form>
+    </div>
+{% endblock %}
