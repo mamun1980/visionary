@@ -52,8 +52,7 @@ class VisionaryUser(AbstractUser):
     Custom user model.
     """
     username = None
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
-    phone = models.CharField(_('Phone number'), validators=[phone_regex], max_length=17, unique=True, blank=True, null=True)
+    phone = models.CharField(_('Phone number'), max_length=17, unique=True, blank=True, null=True)
     email = models.EmailField(_("email address"), unique=True, blank=False, null=False)
     name = models.CharField(max_length=200, blank=True, null=True)
     first_name = models.CharField(_("first name"), max_length=150, blank=True, null=True)
